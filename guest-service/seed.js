@@ -1,30 +1,9 @@
-const mongoose = require('mongoose');
 const Guest = require('./models/Guest');
 
-mongoose.connect('mongodb://mongo:27017/guest-service', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('Connected to MongoDB for guest-service'))
-  .catch((err) => console.error('MongoDB connection error:', err));
-
 const seedData = [
-  // Demo data for guest-service
-  { name: 'Guest 1', date: new Date(), status: 'active', details: 'Sample details 1' },
-  { name: 'Guest 2', date: new Date(), status: 'inactive', details: 'Sample details 2' },
-  { name: 'Guest 3', date: new Date(), status: 'pending', details: 'Sample details 3' },
+  { name: 'John Doe', roomNumber: '101', checkInDate: new Date('2024-09-25'), stayDuration: 5, totalBill: 1000 },
+  { name: 'Jane Smith', roomNumber: '102', checkInDate: new Date('2024-09-26'), stayDuration: 3, totalBill: 600 },
+  { name: 'Emily Johnson', roomNumber: '103', checkInDate: new Date('2024-09-27'), stayDuration: 2, totalBill: 400 },
+  { name: 'Michael Brown', roomNumber: '104', checkInDate: new Date('2024-09-28'), stayDuration: 7, totalBill: 1400 },
+  { name: 'Chris Davis', roomNumber: '105', checkInDate: new Date('2024-09-29'), stayDuration: 4, totalBill: 800 }
 ];
-
-const seedDatabase = async () => {
-  try {
-    await Guest.deleteMany(); // Clear existing data
-    await Guest.insertMany(seedData);
-    console.log('Demo data added to guest-service successfully!');
-    mongoose.connection.close();
-  } catch (err) {
-    console.error('Error seeding database:', err);
-  }
-};
-
-seedDatabase();
-

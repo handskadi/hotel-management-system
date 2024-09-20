@@ -1,30 +1,9 @@
-const mongoose = require('mongoose');
-const Crm = require('./models/Crm');
-
-mongoose.connect('mongodb://mongo:27017/crm-service', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('Connected to MongoDB for crm-service'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+const CRM = require('./models/CRM');
 
 const seedData = [
-  // Demo data for crm-service
-  { name: 'Crm 1', date: new Date(), status: 'active', details: 'Sample details 1' },
-  { name: 'Crm 2', date: new Date(), status: 'inactive', details: 'Sample details 2' },
-  { name: 'Crm 3', date: new Date(), status: 'pending', details: 'Sample details 3' },
+  { customerId: 1, interaction: 'Phone call', date: new Date('2024-09-20'), notes: 'Discussed upcoming stay.' },
+  { customerId: 2, interaction: 'Email', date: new Date('2024-09-21'), notes: 'Inquired about amenities.' },
+  { customerId: 3, interaction: 'In-person', date: new Date('2024-09-22'), notes: 'Checked in.' },
+  { customerId: 4, interaction: 'Feedback', date: new Date('2024-09-23'), notes: 'Provided review.' },
+  { customerId: 5, interaction: 'Phone call', date: new Date('2024-09-24'), notes: 'Follow-up on satisfaction.' }
 ];
-
-const seedDatabase = async () => {
-  try {
-    await Crm.deleteMany(); // Clear existing data
-    await Crm.insertMany(seedData);
-    console.log('Demo data added to crm-service successfully!');
-    mongoose.connection.close();
-  } catch (err) {
-    console.error('Error seeding database:', err);
-  }
-};
-
-seedDatabase();
-

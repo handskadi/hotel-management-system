@@ -1,30 +1,9 @@
-const mongoose = require('mongoose');
 const Notification = require('./models/Notification');
 
-mongoose.connect('mongodb://mongo:27017/notification-service', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('Connected to MongoDB for notification-service'))
-  .catch((err) => console.error('MongoDB connection error:', err));
-
 const seedData = [
-  // Demo data for notification-service
-  { name: 'Notification 1', date: new Date(), status: 'active', details: 'Sample details 1' },
-  { name: 'Notification 2', date: new Date(), status: 'inactive', details: 'Sample details 2' },
-  { name: 'Notification 3', date: new Date(), status: 'pending', details: 'Sample details 3' },
+  { userId: 1, message: 'Your booking is confirmed!', date: new Date('2024-09-20') },
+  { userId: 2, message: 'Your check-in date is approaching.', date: new Date('2024-09-21') },
+  { userId: 3, message: 'You have feedback to review.', date: new Date('2024-09-22') },
+  { userId: 4, message: 'New promotional offers are available.', date: new Date('2024-09-23') },
+  { userId: 5, message: 'Thank you for staying with us!', date: new Date('2024-09-24') }
 ];
-
-const seedDatabase = async () => {
-  try {
-    await Notification.deleteMany(); // Clear existing data
-    await Notification.insertMany(seedData);
-    console.log('Demo data added to notification-service successfully!');
-    mongoose.connection.close();
-  } catch (err) {
-    console.error('Error seeding database:', err);
-  }
-};
-
-seedDatabase();
-

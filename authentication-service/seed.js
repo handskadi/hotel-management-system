@@ -1,30 +1,9 @@
-const mongoose = require('mongoose');
-const Authentication = require('./models/Authentication');
-
-mongoose.connect('mongodb://mongo:27017/authentication-service', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('Connected to MongoDB for authentication-service'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+const User = require('./models/User');
 
 const seedData = [
-  // Demo data for authentication-service
-  { name: 'Authentication 1', date: new Date(), status: 'active', details: 'Sample details 1' },
-  { name: 'Authentication 2', date: new Date(), status: 'inactive', details: 'Sample details 2' },
-  { name: 'Authentication 3', date: new Date(), status: 'pending', details: 'Sample details 3' },
+  { username: 'johndoe', password: 'hashedpassword1', role: 'customer' },
+  { username: 'janesmith', password: 'hashedpassword2', role: 'admin' },
+  { username: 'emilyj', password: 'hashedpassword3', role: 'staff' },
+  { username: 'michaelb', password: 'hashedpassword4', role: 'customer' },
+  { username: 'chrisd', password: 'hashedpassword5', role: 'staff' }
 ];
-
-const seedDatabase = async () => {
-  try {
-    await Authentication.deleteMany(); // Clear existing data
-    await Authentication.insertMany(seedData);
-    console.log('Demo data added to authentication-service successfully!');
-    mongoose.connection.close();
-  } catch (err) {
-    console.error('Error seeding database:', err);
-  }
-};
-
-seedDatabase();
-
