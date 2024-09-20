@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  mongo:
+    image: mongo:4.4
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - hotel-network
+
+  rooms-service:
+    build: ./rooms-service
+    ports:
+      - "3001:3001"
+    networks:
+      - hotel-network
+    depends_on:
+      - mongo
+
+  booking-service:
+    build: ./booking-service
+    ports:
+      - "3002:3002"
+    networks:
+      - hotel-network
+    depends_on:
+      - mongo
+
+  customers-service:
+    build: ./customers-service
+    ports:
+      - "3003:3003"
+    networks:
+      - hotel-network
+    depends_on:
+      - mongo
+
+volumes:
+  mongo-data:
+
+networks:
+  hotel-network:
+    driver: bridge
