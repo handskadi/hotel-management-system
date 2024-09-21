@@ -8,3 +8,10 @@ docker-compose up -d
 
 3- Run the seed scripts for all services:
 ./run-all-seeds.sh
+
+
+
+
+# Tiprs: 
+1- List all foulders & Files and Thier contents: 
+find . -path ./.git -prune -o -type f -exec sh -c 'echo "=== $1 ===" && cat "$1"' _ {} \;
