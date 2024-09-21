@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const feedbackserviceSchema = new mongoose.Schema({
   name: String,
-  description: String
+  description: String,
 });
 
-module.exports = mongoose.model("Feedback-service", feedbackserviceSchema);
+module.exports = mongoose.model("Feedback", feedbackserviceSchema);

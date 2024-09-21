@@ -36,7 +36,7 @@ The system is composed of the following microservices:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/hotel-microservices.git
+   git clone https://github.com/handskadi/hotel-microservices.git
    cd hotel-microservices
 
    ```
@@ -84,13 +84,13 @@ You can send requests to the respective service endpoints using tools like Postm
 - Create a booking:
 
   ```bash
-  curl -X POST http://localhost:3001/bookings -d '{"roomNumber": "101", "customerName": "John Doe", "checkInDate": "2024-09-25", "checkOutDate": "2024-09-30"}' -H "Content-Type: application/json"
+  curl -X POST http://localhost:3002/bookings -d '{"roomNumber": "101", "customerName": "John Doe", "checkInDate": "2024-09-25", "checkOutDate": "2024-09-30"}' -H "Content-Type: application/json"
   ```
 
 - Get all bookings:
 
   ```bash
-  curl http://localhost:3001/bookings
+  curl http://localhost:3002/bookings
   ```
 
 ### Contributing

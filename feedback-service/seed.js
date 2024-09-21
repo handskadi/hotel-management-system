@@ -1,9 +1,25 @@
-const Feedback = require('./models/Feedback');
+const mongoose = require("mongoose");
+const Feedback = require("./models/feedbackserviceModel");
 
 const seedData = [
-  { customerId: 1, rating: 5, comment: 'Excellent service!', date: new Date('2024-09-20') },
-  { customerId: 2, rating: 4, comment: 'Very comfortable stay.', date: new Date('2024-09-21') },
-  { customerId: 3, rating: 3, comment: 'Average experience.', date: new Date('2024-09-22') },
-  { customerId: 4, rating: 2, comment: 'Not satisfied with cleanliness.', date: new Date('2024-09-23') },
-  { customerId: 5, rating: 5, comment: 'Will definitely come back!', date: new Date('2024-09-24') }
+  { name: "Customer 1", description: "Excellent service!" },
+  { name: "Customer 2", description: "Very comfortable stay." },
+  { name: "Customer 3", description: "Average experience." },
+  { name: "Customer 4", description: "Not satisfied with cleanliness." },
+  { name: "Customer 5", description: "Will definitely come back!" },
 ];
+
+mongoose
+  .connect("mongodb://mongo:27017/feedback-service", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(async () => {
+    await Feedback.deleteMany(); // Clear existing data
+    await Feedback.insertMany(seedData); // Seed data
+    console.log("Database seeded!");
+    mongoose.connection.close(); // Close connection
+  })
+  .catch((err) => {
+    console.error(err);
+  });
