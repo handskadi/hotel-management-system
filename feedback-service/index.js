@@ -17,6 +17,6 @@ mongoose.connect("mongodb://mongo:27017/feedback-service", {
   useUnifiedTopology: true,
 });
 
-app.listen(3000, () => {
+app.listen(3011, () => {
   console.log("feedback-service is listening on port 3000");
 });

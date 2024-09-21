@@ -1,0 +1,10 @@
+## Complete Steps Overview:##
+
+1- Rebuild Docker images:
+docker-compose build --no-cache
+
+2- Restart Docker containers:
+docker-compose up -d
+
+3- Run the seed scripts for all services:
+./run-all-seeds.sh
